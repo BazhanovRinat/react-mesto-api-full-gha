@@ -1,0 +1,7 @@
+.sign-data {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 358px;
+    text-align: center;
+}

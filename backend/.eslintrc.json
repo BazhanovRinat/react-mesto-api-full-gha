@@ -1,0 +1,40 @@
+// {
+//   "extends": "airbnb-base",
+//   "rules": {
+//     "camelcase": ["error", { "allowAfterThis": true, "allow": ["_id$", "^_"] }]
+//   }
+// }
+
+// {
+//   "parserOptions": {
+//     "ecmaVersion": 6
+//   },
+//   "rules": {
+//     "camelcase": ["error", { "allow": ["_id$", "^_"] }]
+//   }
+// }
+
+// {
+//   "extends": "airbnb-base",
+//   "rules": {
+//     "no-underscore-dangle": ["error", { "allow": ["_id"]}]
+//   }
+// } 
+
+{
+  "extends": "airbnb-base",
+    "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["_id"]}],
+    "quotes": "off",
+    "semi": "off",
+    "indent": "off",
+    "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
+  }
+} 
+
+
+  
+

@@ -1,0 +1,6 @@
+.popup-zoom__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+}

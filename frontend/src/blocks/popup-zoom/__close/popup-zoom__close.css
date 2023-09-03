@@ -1,0 +1,5 @@
+@media screen and (max-width: 420px) {
+    .popup-zoom__close {
+        right: 0;
+    }
+}
