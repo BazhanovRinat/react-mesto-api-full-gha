@@ -12,9 +12,17 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 
 require("dotenv").config()
 
-// //const { PORT, MONGODB_URL } = process.env
+const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
 
-mongoose.connect("mongodb://127.0.0.1:27017/mestodb", {
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+];
+
+const { PORT = 3000, MONGODB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env
+
+mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
 }).then(() => {
   console.log("connected to db")
@@ -47,6 +55,21 @@ app.use(requestLogger);
 
 app.use(router)
 
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  const { method } = req;
+  const requestHeaders = req.headers["access-control-request-headers"];
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  if (method === 'OPTIONS') {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    res.header("Access-Control-Allow-Headers", requestHeaders);
+    return res.end();
+  }
+  return next();
+});
+
 app.use(errorLogger);
 
 app.use(errors());
@@ -54,6 +77,6 @@ app.use(errors());
 app.use((req, res, next) => next(new NotFound("Страница не найдена")));
 app.use(errorHandler)
 
-app.listen(3000, () => {
-  console.log(`Example app listening on port ${3000}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`)
 });

@@ -91,18 +91,18 @@ export default class Api {
 
 }
 
-export const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-63/',
-    headers: {
-        authorization: '52af015b-cc8d-4640-80fa-207f5ac44ed7',
-        'Content-Type': 'application/json'
-    }
-})
-
 // export const api = new Api({
-//     url: 'http://Bazhanov.Rinat.nomoredomainsicu.ru',
+//     url: 'https://mesto.nomoreparties.co/v1/cohort-63/',
 //     headers: {
-//         authorization: `Bearer ${localStorage.getItem('jwt')}`,
+//         authorization: '52af015b-cc8d-4640-80fa-207f5ac44ed7',
 //         'Content-Type': 'application/json'
 //     }
 // })
+
+export const api = new Api({
+    url: 'http://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
+    headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json'
+    }
+})
