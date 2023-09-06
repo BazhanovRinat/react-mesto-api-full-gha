@@ -18,7 +18,9 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'localhost:3000',
-  'https://Bazhanov.Rinat.nomoredomainsicu.ru',
+  'https://bazhanov.rinat.nomoredomainsicu.ru',
+  'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
+  'http://bazhanov.rinat.nomoredomainsicu.ru',
   'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
 ];
 
