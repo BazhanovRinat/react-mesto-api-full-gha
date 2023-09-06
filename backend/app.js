@@ -19,9 +19,9 @@ const allowedCors = [
   'http://praktikum.tk',
   'localhost:3000',
   'https://bazhanov.rinat.nomoredomainsicu.ru',
-  'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
+  'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru',
   'http://bazhanov.rinat.nomoredomainsicu.ru',
-  'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
+  'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru',
 ];
 
 const { PORT = 3000, MONGODB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env
