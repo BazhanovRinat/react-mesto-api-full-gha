@@ -76,7 +76,9 @@ app.use(router)
 //   return next();
 // });
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://bazhanov.rinat.nomoredomainsicu.ru',
+}));
 
 app.use(errorLogger);
 
