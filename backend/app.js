@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose")
-const { errors } = require('celebrate'); //
+const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit')
 const bodyParser = require("body-parser")
 const helmet = require('helmet');
