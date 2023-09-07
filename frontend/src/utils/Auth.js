@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru';
+export const BASE_URL = 'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
