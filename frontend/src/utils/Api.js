@@ -103,6 +103,6 @@ export const api = new Api({
     url: 'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
     headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
     }
 })
