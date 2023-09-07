@@ -66,8 +66,6 @@ app.use(bodyParser.json())
 
 app.use(requestLogger);
 
-app.use(router)
-
 app.use((req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
@@ -82,6 +80,8 @@ app.use((req, res, next) => {
   }
   return next();
 });
+
+app.use(router)
 
 // app.use(cors(corsOptions))
 
