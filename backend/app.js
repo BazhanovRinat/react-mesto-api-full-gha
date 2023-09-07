@@ -26,12 +26,12 @@ require("dotenv").config()
 //   'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru',
 // ];
 
-// const corsOptions = {
-//   origin: '*',
-//   credentials: true,
-//   optionSuccessStatus: 200,
-//   exposedHeaders: 'Access-Control-Allow-Origin',
-// };
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
+  // exposedHeaders: 'Access-Control-Allow-Origin',
+};
 
 const { PORT = 3000, MONGODB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env
 
@@ -81,11 +81,9 @@ app.use(requestLogger);
 //   return next();
 // });
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(router)
-
-// app.use(cors(corsOptions))
 
 app.use(errorLogger);
 
