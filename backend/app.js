@@ -78,6 +78,8 @@ app.use(router)
 
 app.use(cors({
   origin: 'https://bazhanov.rinat.nomoredomainsicu.ru',
+  optionsSuccessStatus: 200,
+  credentials: true,
 }));
 
 app.use(errorLogger);
