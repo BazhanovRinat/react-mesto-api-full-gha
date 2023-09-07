@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
