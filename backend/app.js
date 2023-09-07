@@ -78,7 +78,8 @@ app.use(router)
 
 app.use(cors({
   origin: 'https://bazhanov.rinat.nomoredomainsicu.ru',
-  optionsSuccessStatus: 200,
+  methods: 'GET,POST,OPTIONS,PUT,DELETE',
+  allowedHeaders: 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
   credentials: true,
 }));
 
