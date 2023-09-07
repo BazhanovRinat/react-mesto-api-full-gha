@@ -49,6 +49,21 @@ mongoose.connect(MONGODB_URL, {
 
 const app = express()
 
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  const { method } = req;
+  const requestHeaders = req.headers["access-control-request-headers"];
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+  if (method === 'OPTIONS') {
+    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+    res.header("Access-Control-Allow-Headers", `${requestHeaders}, Content-Type`);
+    return res.end();
+  }
+  return next();
+});
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -66,20 +81,20 @@ app.use(bodyParser.json())
 
 app.use(requestLogger);
 
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  const { method } = req;
-  const requestHeaders = req.headers["access-control-request-headers"];
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  if (method === 'OPTIONS') {
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Headers", `${requestHeaders}, Content-Type`);
-    return res.end();
-  }
-  return next();
-});
+// app.use((req, res, next) => {
+//   const { origin } = req.headers;
+//   const { method } = req;
+//   const requestHeaders = req.headers["access-control-request-headers"];
+//   if (allowedCors.includes(origin)) {
+//     res.header("Access-Control-Allow-Origin", origin);
+//   }
+//   if (method === 'OPTIONS') {
+//     res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
+//     res.header("Access-Control-Allow-Headers", `${requestHeaders}, Content-Type`);
+//     return res.end();
+//   }
+//   return next();
+// });
 
 app.use(router)
 
