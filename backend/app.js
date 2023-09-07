@@ -30,6 +30,7 @@ const corsOptions = {
   origin: '*',
   credentials: true,
   optionSuccessStatus: 200,
+  exposedHeaders: 'Access-Control-Allow-Origin',
 };
 
 const { PORT = 3000, MONGODB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env
