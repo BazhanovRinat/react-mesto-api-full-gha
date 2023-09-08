@@ -38,7 +38,7 @@ function Card({card, onCardClick, onCardLike, onCardDelete}) {
                     backgroundSize: "cover",
                 }} />
             <div className="element__item">
-                <h2 className="element__name">{card.name}</h2>
+                <h2 className="element__name">{cards.name}</h2>
                 <div className="element__like-area">
                     <button type="button" className={cardLikeButtonClassName} onClick={handleLikeClick}></button>
                     <p className="element__like-count">{card.likes ? card.likes.length : 0}</p>
