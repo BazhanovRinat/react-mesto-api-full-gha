@@ -41,7 +41,7 @@ const deleteCard = (req, res, next) => {
 }
 
 const getCards = (req, res, next) => cardModel.find({})
-    .then((cards) => res.status(200).send({ cards }))
+    .then((cards) => res.status(200).send(cards))
     .catch((err) => next(err));
 
 const likeCard = (req, res, next) => {
