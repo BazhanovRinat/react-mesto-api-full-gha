@@ -80,6 +80,7 @@ function App() {
   function signOut() {
     localStorage.removeItem('token');
     setLoggedIn(false)
+    setCurrentUser({});
   }
 
   function handleEditAvatarClick() {
