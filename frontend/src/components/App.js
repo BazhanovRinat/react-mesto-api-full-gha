@@ -48,13 +48,13 @@ function App() {
         console.log(`${error}`);
       })
 
-    // api.getInitialCards()
-    //   .then((data) => {
-    //     setCards(data)
-    //   })
-    //   .catch((error) => {
-    //     console.log(`${error}`);
-    //   })
+    api.getInitialCards()
+      .then((data) => {
+        setCards(data)
+      })
+      .catch((error) => {
+        console.log(`${error}`);
+      })
     }
     tokenCheck();
   }, [loggedIn])
