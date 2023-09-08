@@ -4,7 +4,6 @@ const mongoose = require("mongoose")
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit')
 const helmet = require('helmet');
-const cookieParser = require('cookie-parser');
 const errorHandler = require("./errors/errorHandler");
 const NotFound = require("./errors/notFound-error")
 const router = require("./routes/index")
@@ -57,8 +56,6 @@ const limiter = rateLimit({
 
 app.use(limiter)
 
-app.use(cookieParser());
-
 app.use(helmet());
 
 app.use(express.json())
@@ -89,8 +86,6 @@ app.use((req, res, next) => next(new NotFound("Страница не найде�
 app.use(errorLogger);
 
 app.use(errors());
-
-//
 
 app.use(errorHandler)
 
