@@ -10,7 +10,7 @@ https://bazhanov.rinat.nomoredomainsicu.ru/
 
 ## Ссылки на проект
 
-IP-адрес 51.250.13.76
+IP 51.250.13.76
 
 Frontend https://Bazhanov.Rinat.nomoredomainsicu.ru
 
