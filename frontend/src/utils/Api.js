@@ -99,10 +99,17 @@ export default class Api {
 //     }
 // })
 
+const token = localStorage.getItem('jwt');
+console.log(token)
+const headers = {
+    'Content-Type': 'application/json',
+};
+
+if (token) {
+    headers.authorization = `Bearer ${token}`;
+}
+
 export const api = new Api({
     url: 'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
-    headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        'Content-Type': 'application/json',
-    }
+    headers,
 })
