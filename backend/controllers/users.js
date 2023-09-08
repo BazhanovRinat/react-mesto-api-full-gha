@@ -35,10 +35,6 @@ const getUserById = (req, res, next) => {
 const createNewUser = (req, res, next) => {
   const { name, about, avatar, email, password } = req.body
 
-  if (!email || !password) {
-    return next(new BadRequest("Почта или пароль не могут быть пустыми"))
-  }
-
   return bcrypt.hash(password, SALT_ROUNDS)
     .then((hash) => userModel.create({ name, about, avatar, email, password: hash }))
     .then((user) => {
@@ -106,10 +102,6 @@ const patchUser = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body
 
-  if (!email || !password) {
-    return next(new BadRequest("Почта или пароль не могут быть пустыми"))
-  }
-
   return userModel.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
@@ -141,10 +133,7 @@ const getCurrentUser = (req, res, next) => {
       return res.status(200).send(user)
     })
     .catch((err) => {
-      if (err.name === 'CastError') {
-        return next(new BadRequest("Неправильный Id пользователя"))
-      }
-      return next(err)
+      next(err)
     })
 }
 

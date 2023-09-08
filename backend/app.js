@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 // const cors = require('cors');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit')
-const bodyParser = require("body-parser")
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const errorHandler = require("./errors/errorHandler");
@@ -62,7 +61,7 @@ app.use(cookieParser());
 
 app.use(helmet());
 
-app.use(bodyParser.json())
+app.use(express.json())
 
 app.use(requestLogger);
 
@@ -85,11 +84,14 @@ app.use((req, res, next) => {
 
 app.use(router)
 
+app.use((req, res, next) => next(new NotFound("Страница не найдена")));
+
 app.use(errorLogger);
 
 app.use(errors());
 
-app.use((req, res, next) => next(new NotFound("Страница не найдена")));
+//
+
 app.use(errorHandler)
 
 app.listen(PORT, () => {

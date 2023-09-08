@@ -82,6 +82,9 @@ const dislakeCards = (req, res, next) => {
             }
             return res.status(200).send(card)
         })
+        .catch((err) => {
+            next(err)
+        })
 }
 
 module.exports = { createNewCard, deleteCard, getCards, likeCard, dislakeCards }

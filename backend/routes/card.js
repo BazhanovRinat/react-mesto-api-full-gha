@@ -16,7 +16,7 @@ router.post("/cards", celebrate({
 router.get("/cards", getCards)
 router.put("/cards/:cardId/likes", celebrate({
     params: Joi.object().keys({
-        cardId: Joi.string().custom((value, helpers) => {
+        cardId: Joi.string().required().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error("objectId.invalid");
             }
@@ -26,7 +26,7 @@ router.put("/cards/:cardId/likes", celebrate({
 }), likeCard)
 router.delete("/cards/:cardId/likes", celebrate({
     params: Joi.object().keys({
-        cardId: Joi.string().custom((value, helpers) => {
+        cardId: Joi.string().required().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error("objectId.invalid");
             }
@@ -36,7 +36,7 @@ router.delete("/cards/:cardId/likes", celebrate({
 }), dislakeCards)
 router.delete("/cards/:cardId", celebrate({
     params: Joi.object().keys({
-        cardId: Joi.string().custom((value, helpers) => {
+        cardId: Joi.string().required().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error("objectId.invalid");
             }

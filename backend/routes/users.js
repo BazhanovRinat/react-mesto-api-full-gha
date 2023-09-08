@@ -39,12 +39,12 @@ router.patch("/users/me", celebrate({
 router.get("/users/me", getCurrentUser)
 router.patch("/users/me/avatar", celebrate({
     body: Joi.object().keys({
-        avatar: Joi.string().pattern(/^(http|https):\/\/(?:www\.)?[A-Za-z0-9\-._~:/?#@!$&'()*+,;%-]+\.ru(?:\/[A-Za-z0-9\-._~:/?#@!$&'()*+,;%-]*)?(?:#)?$/),
+        avatar: Joi.string().required().pattern(/^(http|https):\/\/(?:www\.)?[A-Za-z0-9\-._~:/?#@!$&'()*+,;%-]+\.ru(?:\/[A-Za-z0-9\-._~:/?#@!$&'()*+,;%-]*)?(?:#)?$/),
     }),
 }), patchUserAvatar)
 router.get("/users/:userId", celebrate({
     params: Joi.object().keys({
-        userId: Joi.string().custom((value, helpers) => {
+        userId: Joi.string().required().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error("objectId.invalid");
             }
