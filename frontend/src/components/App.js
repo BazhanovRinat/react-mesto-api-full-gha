@@ -194,10 +194,10 @@ function App() {
     auth.authorize(values.email, values.password)
       .then((res) => {
         if (res.token) {
-          SetisPopupCorret(true)
+          SetisPopupCorret(true);
           setValues({ email: '', password: '' });
-          setLoggedIn(true)
-
+          setLoggedIn(true);
+  
           api.profileDataInstall()
             .then((data) => {
               setCurrentUser(data);
@@ -205,16 +205,17 @@ function App() {
             .catch((error) => {
               console.log(error);
             });
-
+  
           navigate('/', { replace: true });
         }
       })
       .catch(err => {
-        console.log(err)
-        setisPopupInfoTooltipOpen(true)
-        SetisPopupCorret(false)
-      })
+        console.log(err);
+        setisPopupInfoTooltipOpen(true);
+        SetisPopupCorret(false);
+      });
   }
+  
 
   function handleRegister(values, setValues) {
     auth.register(values.email, values.password)
