@@ -79,7 +79,7 @@ const dislakeCards = (req, res, next) => {
             if (!cardId) {
                 return next(new BadRequest("Неправильный Id карточки"))
             }
-            return res.status(200).send({ message: "Лайк убран" })
+            return res.status(200).send(card)
         })
 }
 
