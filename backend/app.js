@@ -1,18 +1,18 @@
-const express = require("express");
-const mongoose = require("mongoose")
+const express = require('express');
+const mongoose = require('mongoose');
 // const cors = require('cors');
 const { errors } = require('celebrate');
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
-const errorHandler = require("./errors/errorHandler");
-const NotFound = require("./errors/notFound-error")
-const router = require("./routes/index")
+const errorHandler = require('./errors/errorHandler');
+const NotFound = require('./errors/notFound-error');
+const router = require('./routes/index');
 
-const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-require("dotenv").config()
+require('dotenv').config();
 
-const DEFAULT_ALLOWED_METHODS = "GET,HEAD,PUT,PATCH,POST,DELETE";
+const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const allowedCors = [
   'https://praktikum.tk',
@@ -31,47 +31,47 @@ const allowedCors = [
 //   // exposedHeaders: 'Access-Control-Allow-Origin',
 // };
 
-const { PORT = 3000, MONGODB_URL = "mongodb://127.0.0.1:27017/mestodb" } = process.env
+const { PORT = 3000, MONGODB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 mongoose.connect(MONGODB_URL, {
   useNewUrlParser: true,
 }).then(() => {
-  console.log("connected to db")
-})
+  console.log('connected to db');
+});
 
-// mongoose.connect("mongodb://10.128.0.27:27017/mestodb", {
+// mongoose.connect('mongodb://10.128.0.27:27017/mestodb', {
 //   useNewUrlParser: true,
 // }).then(() => {
-//   console.log("connected to db");
+//   console.log('connected to db');
 // });
 
-const app = express()
+const app = express();
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   standardHeaders: true,
   legacyHeaders: false,
-})
+});
 
-app.use(limiter)
+app.use(limiter);
 
 app.use(helmet());
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(requestLogger);
 
 app.use((req, res, next) => {
   const { origin } = req.headers;
   const { method } = req;
-  const requestHeaders = req.headers["access-control-request-headers"];
+  const requestHeaders = req.headers['access-control-request-headers'];
   if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
+    res.header('Access-Control-Allow-Origin', origin);
   }
   if (method === 'OPTIONS') {
-    res.header("Access-Control-Allow-Methods", DEFAULT_ALLOWED_METHODS);
-    res.header("Access-Control-Allow-Headers", `${requestHeaders}, Content-Type`);
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', `${requestHeaders}, Content-Type`);
     return res.end();
   }
   return next();
@@ -79,16 +79,16 @@ app.use((req, res, next) => {
 
 // app.use(cors(corsOptions));
 
-app.use(router)
+app.use(router);
 
-app.use((req, res, next) => next(new NotFound("Страница не найдена")));
+app.use((req, res, next) => next(new NotFound('Страница не найдена')));
 
 app.use(errorLogger);
 
 app.use(errors());
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+  console.log(`Example app listening on port ${PORT}`);
 });

@@ -28,10 +28,7 @@
   },
   "rules": {
     "no-underscore-dangle": ["error", { "allow": ["_id"]}],
-    "quotes": "off",
-    "semi": "off",
-    "indent": "off",
-    "object-curly-newline": ["error", { "multiline": true, "consistent": true }]
+    "indent": "off"
   }
 } 
 

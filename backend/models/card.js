@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const validator = require('validator');
 
 const cardSchema = new mongoose.Schema({
@@ -36,6 +36,6 @@ const cardSchema = new mongoose.Schema({
       default: [],
     },
   ],
-}, { versionKey: false })
+}, { versionKey: false });
 
 module.exports = mongoose.model('card', cardSchema);
