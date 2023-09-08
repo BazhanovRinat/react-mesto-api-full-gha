@@ -8,8 +8,6 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike,
 
     const profileData =  React.useContext(CurrentUserContext)
 
-    const cards = []
-
     return (
         <main className="content">
             <section className="profile">
