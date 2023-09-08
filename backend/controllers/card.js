@@ -8,7 +8,8 @@ const createNewCard = (req, res, next) => {
     const userId = req.user._id
     const { name, link } = req.body
     return cardModel.create({ name, link, owner: userId })
-        .then((card) => res.status(201).send({ _id: card._id }))
+        // .then((card) => res.status(201).send({ _id: card._id }))
+        .then((card) => res.status(201).send(card))
         .catch((err) => {
             if (err.name === "ValidationError") {
                 return next(new BadRequest(`${Object.values(err.errors).map((error) => error.message).join(", ")}`))
