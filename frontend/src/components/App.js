@@ -42,7 +42,6 @@ function App() {
     if (loggedIn) {
     api.profileDataInstall()
       .then((data) => {
-        console.log(data)
         setCurrentUser(data)
       })
       .catch((error) => {
@@ -66,6 +65,7 @@ function App() {
       auth.getContent(token)
         .then((res) => {
           if (res) {
+            console.log(res)
             setLoggedIn(true);
             navigate("/", { replace: true })
             setEmail(res.data.email)
