@@ -138,7 +138,7 @@ const getCurrentUser = (req, res, next) => {
   userModel.findById(req.user._id)
     .then((user) => {
       if (!user) return next(new NotFound("Пользователь не найден"))
-      return res.status(200).send({ user })
+      return res.status(200).send(user)
     })
     .catch((err) => {
       if (err.name === 'CastError') {
