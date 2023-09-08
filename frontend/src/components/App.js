@@ -68,7 +68,7 @@ function App() {
             console.log(res)
             setLoggedIn(true);
             navigate("/", { replace: true })
-            setEmail(res.data.email)
+            setEmail(res.email)
           }
         })
         .catch(err => {
@@ -121,7 +121,6 @@ function App() {
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        console.log(newCard)
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
         console.log(state)
       })
