@@ -40,21 +40,21 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-    api.profileDataInstall()
-      .then((data) => {
-        setCurrentUser(data)
-      })
-      .catch((error) => {
-        console.log(`${error}`);
-      })
+      api.profileDataInstall()
+        .then((data) => {
+          setCurrentUser(data)
+        })
+        .catch((error) => {
+          console.log(`${error}`);
+        })
 
-    api.getInitialCards()
-      .then((data) => {
-        setCards(data)
-      })
-      .catch((error) => {
-        console.log(`${error}`);
-      })
+      api.getInitialCards()
+        .then((data) => {
+          setCards(data)
+        })
+        .catch((error) => {
+          console.log(`${error}`);
+        })
     }
     tokenCheck();
   }, [loggedIn])
@@ -196,6 +196,15 @@ function App() {
           SetisPopupCorret(true)
           setValues({ email: '', password: '' });
           setLoggedIn(true)
+
+          api.profileDataInstall()
+            .then((data) => {
+              setCurrentUser(data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
           navigate('/', { replace: true });
         }
       })
