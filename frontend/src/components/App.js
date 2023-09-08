@@ -42,6 +42,7 @@ function App() {
     if (loggedIn) {
     api.profileDataInstall()
       .then((data) => {
+        console.log(data)
         setCurrentUser(data)
       })
       .catch((error) => {
@@ -50,7 +51,6 @@ function App() {
 
     api.getInitialCards()
       .then((data) => {
-        console.log(data)
         setCards(data)
       })
       .catch((error) => {
