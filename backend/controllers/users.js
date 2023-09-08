@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt"); //
 const userModel = require("../models/user");
 const { getJwtToken } = require("../utils/jwt");
 const UnauthorizedError = require("../errors/unauthorized-error");
