@@ -118,10 +118,11 @@ const login = (req, res, next) => {
           }
           const token = getJwtToken({ _id: user._id });
 
-          return res.cookie('jwt', token, {
+          res.cookie('jwt', token, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
           });
+          return res.status(200).send({ token });
         });
     })
     .catch((err) => {
