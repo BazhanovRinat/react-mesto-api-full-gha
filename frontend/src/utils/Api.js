@@ -102,7 +102,7 @@ export default class Api {
 export const api = new Api({
     url: 'https://api.Bazhanov.Rinat.nomore.nomoredomainsicu.ru',
     headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-    }
+    },
+    credentials: 'include',
 })
