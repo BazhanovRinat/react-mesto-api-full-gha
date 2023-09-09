@@ -1,4 +1,3 @@
-const { default: mongoose } = require('mongoose');
 const cardModel = require('../models/card');
 const NotFound = require('../errors/notFound-error');
 const BadRequest = require('../errors/badRequest-error');
@@ -8,7 +7,6 @@ const createNewCard = (req, res, next) => {
     const userId = req.user._id;
     const { name, link } = req.body;
     return cardModel.create({ name, link, owner: userId })
-        // .then((card) => res.status(201).send({ _id: card._id }))
         .then((card) => res.status(201).send(card))
         .catch((err) => {
             if (err.name === 'ValidationError') {
@@ -20,10 +18,6 @@ const createNewCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
     const { cardId } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(cardId)) {
-        return next(new BadRequest('Некорректный id карточки'));
-    }
 
     return cardModel.findById(cardId)
         .then((card) => {
@@ -48,9 +42,6 @@ const getCards = (req, res, next) => cardModel.find({})
 const likeCard = (req, res, next) => {
     const { cardId } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(cardId)) {
-        return next(new BadRequest('Некорректный id карточки'));
-    }
     return cardModel.findByIdAndUpdate(cardId,
         { $addToSet: { likes: req.user._id } },
         { new: true })
@@ -67,10 +58,6 @@ const likeCard = (req, res, next) => {
 
 const dislakeCards = (req, res, next) => {
     const { cardId } = req.params;
-
-    if (!mongoose.Types.ObjectId.isValid(cardId)) {
-        return next(new BadRequest('Некорректный id карточки'));
-    }
 
     return cardModel.findByIdAndUpdate(cardId, { $pull: { likes: req.user._id } }, { new: true })
         .then((card) => {

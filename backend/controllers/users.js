@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt'); //
+const bcrypt = require('bcrypt');
 const userModel = require('../models/user');
 const { getJwtToken } = require('../utils/jwt');
 const UnauthorizedError = require('../errors/unauthorized-error');
@@ -70,7 +70,6 @@ const patchUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
   return userModel.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
-    // .orFail(new Error('Error'))
     .then((user) => {
       if (!user) {
         return next(new NotFound('Пользователь не найден'));
@@ -78,9 +77,6 @@ const patchUserAvatar = (req, res, next) => {
       return res.status(200).send({ avatar });
     })
     .catch((err) => {
-      // if (err.name === 'Error') {
-      //   return res.status(404).send({ message: 'Пользователь не найден' });
-      // }
       if (err.name === 'ValidationError') {
         return next(new BadRequest(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
       }
@@ -93,7 +89,6 @@ const patchUser = (req, res, next) => {
 
   return userModel.findByIdAndUpdate(req.user._id, { name, about },
     { new: true, runValidators: true })
-    // .orFail(new Error('Error'))
     .then((user) => {
       if (!user) {
         return next(new NotFound('Пользователь не найден'));
@@ -101,9 +96,6 @@ const patchUser = (req, res, next) => {
       return res.status(200).send({ name, about });
     })
     .catch((err) => {
-      // if (err.name === 'Error') {
-      //   return res.status(404).send({ message: 'Пользователь не найден' });
-      // }
       if (err.name === 'ValidationError') {
         return next(new BadRequest(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
       }
@@ -126,11 +118,10 @@ const login = (req, res, next) => {
           }
           const token = getJwtToken({ _id: user._id });
 
-          res.cookie('jwt', token, {
+          return res.cookie('jwt', token, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
           });
-          return res.status(200).send({ token });
         });
     })
     .catch((err) => {

@@ -1,26 +1,3 @@
-// {
-//   "extends": "airbnb-base",
-//   "rules": {
-//     "camelcase": ["error", { "allowAfterThis": true, "allow": ["_id$", "^_"] }]
-//   }
-// }
-
-// {
-//   "parserOptions": {
-//     "ecmaVersion": 6
-//   },
-//   "rules": {
-//     "camelcase": ["error", { "allow": ["_id$", "^_"] }]
-//   }
-// }
-
-// {
-//   "extends": "airbnb-base",
-//   "rules": {
-//     "no-underscore-dangle": ["error", { "allow": ["_id"]}]
-//   }
-// } 
-
 {
   "extends": "airbnb-base",
     "parserOptions": {

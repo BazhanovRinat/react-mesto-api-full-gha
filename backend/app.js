@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const cors = require('cors');
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -24,13 +23,6 @@ const allowedCors = [
   'https://api.bazhanov.rinat.nomore.nomoredomainsicu.ru',
 ];
 
-// const corsOptions = {
-//   origin: '*',
-//   credentials: true,
-//   optionSuccessStatus: 200,
-//   // exposedHeaders: 'Access-Control-Allow-Origin',
-// };
-
 const { PORT = 3000, MONGODB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 mongoose.connect(MONGODB_URL, {
@@ -38,12 +30,6 @@ mongoose.connect(MONGODB_URL, {
 }).then(() => {
   console.log('connected to db');
 });
-
-// mongoose.connect('mongodb://10.128.0.27:27017/mestodb', {
-//   useNewUrlParser: true,
-// }).then(() => {
-//   console.log('connected to db');
-// });
 
 const app = express();
 
@@ -76,8 +62,6 @@ app.use((req, res, next) => {
   }
   return next();
 });
-
-// app.use(cors(corsOptions));
 
 app.use(router);
 
