@@ -64,6 +64,9 @@ const dislakeCards = (req, res, next) => {
             if (!card) {
                 return next(new NotFound('Карточка не найдена'));
             }
+            if (!cardId) {
+                return next(new BadRequest('Неправильный Id карточки'));
+            }
             return res.status(200).send(card);
         })
         .catch((err) => {
