@@ -80,7 +80,7 @@ function App() {
   function signOut() {
     localStorage.removeItem('token');
     setLoggedIn(false)
-    setCurrentUser({});
+    // setCurrentUser({});
   }
 
   function handleEditAvatarClick() {
@@ -198,13 +198,13 @@ function App() {
           setValues({ email: '', password: '' });
           setLoggedIn(true);
   
-          api.profileDataInstall()
-            .then((data) => {
-              setCurrentUser(data);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+          // api.profileDataInstall()
+          //   .then((data) => {
+          //     setCurrentUser(data);
+          //   })
+          //   .catch((error) => {
+          //     console.log(error);
+          //   });
   
           navigate('/', { replace: true });
         }
