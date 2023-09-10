@@ -106,22 +106,26 @@ const patchUser = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  return userModel.findOne({ email }).select('+password')
+  userModel.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        return next(new UnauthorizedError('Пользователь не найден'));
+        return Promise.reject(new UnauthorizedError('Пользователь не найден'));
       }
+
       return bcrypt.compare(password, user.password)
         .then((isValidPassword) => {
           if (!isValidPassword) {
-            return next(new UnauthorizedError('Пароль не верный'));
+            return Promise.reject(new UnauthorizedError('Пароль не верный'));
           }
+
           const token = getJwtToken({ _id: user._id });
 
-          return res.cookie('jwt', token, {
+          res.cookie('jwt', token, {
             maxAge: 3600000 * 24 * 7,
             httpOnly: true,
           });
+
+          return res.status(200).send({ message: 'Аутентификация успешна' });
         });
     })
     .catch((err) => {
